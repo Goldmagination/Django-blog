@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block page_title %}
+    My Blog
+{% endblock page_title %} 
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "blog/index.css"%}">
+{% endblock %}
+
+{% block page_body %}
+    <header id="main-navigation">
+        <h1><a href="{% url "posts-page" %}"> My David's Blog </a></h1>
+        <nav>
+        <a href="{% url "posts-page" %}">All Posts</a>
+        </nav>
+    </header>
+
+    <section id="welcome">
+        <header>
+        <img src="{% static "images/me.jpg" %}" alt="David- The Author of This Blog">
+           <h2>David's Blog</h2> 
+        </header>
+        <p>Greetings, i am David</p>
+    </section>
+    <section id="latest-posts">
+        <h2>My Latest Thoughts</h2>
+        <h1><ul>
+    {%for blog in blogs%}
+        <li>
+        <article class="post">
+            
+            <a href="{% url "posts-detail-page" blog %}">
+            <img src="{% static "images/mountains.jpg" %}" alt="Mountain Hiking">
+            <div class="post__content">
+                <h3>{{blog|title}}</h3>
+                <p>
+                    {{blog|title}}
+                </p>
+            </div>
+                </a>
+        </article>
+        </li>
+
+    {% endfor %}
+    </ul>
+    </h1>
+    </section>
+
+    <section id="about">
+    <h2>What i do</h2>
+    <p>I love programming, I love to help other people and i enjoy exploring new technologies in general</p>
+    <p>My goal is to keep on growing as a developer</p>
+    </section>
+{% endblock page_body %}
+    
