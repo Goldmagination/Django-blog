@@ -1,12 +1,31 @@
 {% extends "layout.html" %}
-{% load static %}
+{% load static %} 
+
 
 {% block page_title %}
-    {{blog_name|title}}
-{% endblock page_title %}
+{{post.post_title|title}} 
+{% endblock %} 
+
+
+{% block css_files %} 
+<link rel="stylesheet" href="{% static "blog/post-detail.css"%}">
+{% endblock %} 
+
 
 {% block page_body %}
-<h1>
-    {{blog_content}}
-</h1>
+<section id="summary">
+  <h2>{{post.post_title|title}}</h2>
+  <article>
+    <img src="{% static "images/"|add:post.image %}" alt="{{post.post_title|title}}" />
+    <address>By {{post.author}}</address>
+    <div>Last Updated on on <time> {{post.date|date:"d M Y"}} </time></div>
+  </article>
+</section>
+<main>
+  <h1>{{post.excerpt}}</h1>
+  <p>
+    {{post.post_content|linebreaks}}
+  </p>
+  
+</main>
 {% endblock page_body %}
