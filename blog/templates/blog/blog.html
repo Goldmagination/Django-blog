@@ -3,7 +3,7 @@
 
 
 {% block page_title %}
-{{post.post_title|title}} 
+{{post.title|title}} 
 {% endblock %} 
 
 
@@ -14,9 +14,9 @@
 
 {% block page_body %}
 <section id="summary">
-  <h2>{{post.post_title|title}}</h2>
+  <h2>{{post.title|title}}</h2>
   <article>
-    <img src="{% static "images/"|add:post.image %}" alt="{{post.post_title|title}}" />
+    <img src="{% static "images/"|add:post.image %}" alt="{{post.title|title}}" />
     <address>By {{post.author}}</address>
     <div>Last Updated on on <time> {{post.date|date:"d M Y"}} </time></div>
   </article>
@@ -24,7 +24,7 @@
 <main>
   <h1>{{post.excerpt}}</h1>
   <p>
-    {{post.post_content|linebreaks}}
+    {{post.content|linebreaks}}
   </p>
   
 </main>
