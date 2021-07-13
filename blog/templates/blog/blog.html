@@ -15,9 +15,15 @@
 {% block page_body %}
 <section id="summary">
   <h2>{{post.title|title}}</h2>
+  <div>
+
+    {% for tag in tags  %}
+      <span class="tag">{{tag.caption}}</span>
+    {% endfor %}
+  </div>
   <article>
-    <img src="{% static "images/"|add:post.image %}" alt="{{post.title|title}}" />
-    <address>By {{post.author}}</address>
+    <img src="{% static "images/"|add:post.image_url %}" alt="{{post.title|title}}" />
+    <address>By <a href="mailto:{{post.author.e_mail}}"> {{post.author}} </a></address>
     <div>Last Updated on on <time> {{post.date|date:"d M Y"}} </time></div>
   </article>
 </section>

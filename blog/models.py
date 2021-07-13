@@ -19,7 +19,7 @@ class Post(models.Model):
     title = models.CharField(max_length=150)
     excerpt = models.CharField(max_length=150)
     image_url = models.CharField(max_length=150)
-    date = models.DateField(blank=True, null=True, auto_now=True)
+    date = models.DateField(blank=True, null=True, auto_now=True, editable=True)
     slug = models.SlugField(unique=True, db_index=True)
     content = models.TextField(max_length=1000, validators=[MinLengthValidator(10)])
     author = models.ForeignKey(Author, on_delete=CASCADE, null=True, related_name="posts")
