@@ -22,7 +22,7 @@
     {% endfor %}
   </div>
   <article>
-    <img src="{% static "images/"|add:post.image_url %}" alt="{{post.title|title}}" />
+    <img src="{{post.image.url}}" alt="{{post.title|title}}" />
     <address>By <a href="mailto:{{post.author.e_mail}}"> {{post.author}} </a></address>
     <div>Last Updated on on <time> {{post.date|date:"d M Y"}} </time></div>
   </article>
@@ -34,4 +34,22 @@
   </p>
   
 </main>
+
+
+
+  <section id="comment-form">
+  <h2>Your Comment</h2>
+    <form action="{% url "posts-detail-page" post.slug %}" method="POST">
+    {% csrf_token %}
+      {% for form_field in comment_form  %}
+       <div class="form-control">
+        {{ form_field.label_tag }}
+        {{ form_field }}
+        {{ form_field.errors }}
+       </div>
+       {% endfor %}
+       <button>Save Comment</button>
+    </form>
+  </section>
+
 {% endblock page_body %}
