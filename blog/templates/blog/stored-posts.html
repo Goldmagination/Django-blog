@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block page_title %}
+My Stored Posts
+{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{%static "blog/read-later.css"%}">
+{% endblock css_files %}
+
+
+{% block page_body %}
+    <section id="stored_posts">
+    {% if has_posts %}
+        <ul>
+            {% for post in posts  %}
+                <li><a href="{% url "posts-detail-page" post.slug %}">{{post.title}}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        You didn't add any of the posts to read it later!
+    {% endif %}
+    </section>
+{% endblock  %}
